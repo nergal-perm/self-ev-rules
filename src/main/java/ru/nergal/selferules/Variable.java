@@ -20,22 +20,42 @@ package ru.nergal.selferules;
 import java.util.function.Function;
 
 /**
- * @todo #3 15m Add Javadoc to Variable (header, class, methods)
- *  see Qulice report for details
+ * I represent a Variable capable of instantiating myself. In other words
+ * I can obtain my own value by sending some specified message to my source
+ * object to get (compute) my value.
+ * @param <T> type of an object which can provide me with value
+ * @param <R> return type of my value
+ * @since 0.0.1
  */
 public class Variable<T, R> implements Term<R> {
     /**
      * @todo #3 20m Fix PMD & Checkstyle warnings for Variable (variable names, modificators, etc)
      *  see Qulice report for details
      */
+    /**
+     * Object that can provide or compute the value for a Variable.
+     */
     private final T sourceObject;
+    /**
+     * Function used to compute the value.
+     */
     private final Function<T, R> getterMessage;
 
+    /**
+     * Primary constructor.
+     * @param sourceObject Object that can provide or compute the value for a Variable.
+     * @param getterMessage Function used to compute the value.
+     */
     public Variable(T sourceObject, Function<T, R> getterMessage) {
         this.sourceObject = sourceObject;
         this.getterMessage = getterMessage;
     }
 
+    /**
+     * Sends specified getter message to the source object in order to compute this
+     * Variable's value.
+     * @return Computed value for this Variable.
+     */
     public R resolve() {
         return getterMessage.apply(sourceObject);
     }
