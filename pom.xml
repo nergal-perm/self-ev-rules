@@ -33,7 +33,7 @@
                 <artifactId>qulice-maven-plugin</artifactId>
                 <version>0.18.19</version>
                 <configuration>
-                    <license>file:${basedir}/LICENSE</license>
+                    <license>file:${basedir}/NOTICE</license>
                 </configuration>
                 <executions>
                     <execution>
