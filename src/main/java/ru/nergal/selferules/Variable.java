@@ -29,26 +29,24 @@ import java.util.function.Function;
  */
 public class Variable<T, R> implements Term<R> {
     /**
-     * @todo #3 20m Fix PMD & Checkstyle warnings for Variable (variable names, modificators, etc)
-     *  see Qulice report for details
-     */
-    /**
      * Object that can provide or compute the value for a Variable.
      */
-    private final T sourceObject;
+    private final T source;
+
     /**
      * Function used to compute the value.
      */
-    private final Function<T, R> getterMessage;
+    private final Function<T, R> getter;
 
     /**
      * Primary constructor.
-     * @param sourceObject Object that can provide or compute the value for a Variable.
-     * @param getterMessage Function used to compute the value.
+     *
+     * @param source Object that can provide or compute the value for a Variable.
+     * @param getter Function used to compute the value.
      */
-    public Variable(T sourceObject, Function<T, R> getterMessage) {
-        this.sourceObject = sourceObject;
-        this.getterMessage = getterMessage;
+    public Variable(final T source, final Function<T, R> getter) {
+        this.source = source;
+        this.getter = getter;
     }
 
     /**
@@ -57,7 +55,7 @@ public class Variable<T, R> implements Term<R> {
      * @return Computed value for this Variable.
      */
     public R resolve() {
-        return getterMessage.apply(sourceObject);
+        return this.getter.apply(this.source);
     }
 
 }
