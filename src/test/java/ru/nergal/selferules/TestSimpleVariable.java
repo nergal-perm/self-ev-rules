@@ -17,33 +17,63 @@
  */
 package ru.nergal.selferules;
 
-import org.junit.Assert;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
-/**
- * @todo #3 10m Add Javadoc to TestSimpleVariable (see Qulice report for details)
- */
 
+/**
+ * Unit-tests for a single Variable.
+ *
+ * @since 0.0.1
+ */
 public class TestSimpleVariable {
     /**
-     * @todo #3 20m Fix Checkstyle & PMD warnings in TestSimpleVariable
+     * Person age in years.
+     */
+    public static final int PERSON_AGE = 36;
+
+    /**
+     * Person's first name.
+     */
+    public static final String PERSON_NAME = "Eugene";
+
+    /**
+     * Object representing a person.
      */
     private TestPerson eugene;
 
+    /**
+     * Method to set up unit-tests.
+     */
     @Before
     public void setUp() {
-        eugene = new TestPerson(36, "Eugene");
+        this.eugene = new TestPerson(TestSimpleVariable.PERSON_AGE, TestSimpleVariable.PERSON_NAME);
     }
 
+    /**
+     * Variable should be able to resolve to Integer value.
+     */
     @Test
-    public void testSimpleInstantiation() {
-        Variable<TestPerson, Integer> target = new Variable<>(eugene, TestPerson::age);
-        Assert.assertEquals(Integer.valueOf(36), target.resolve());
+    public void shouldResolveToIntegerValue() {
+        final Variable<TestPerson, Integer> target =
+            new Variable<>(this.eugene, TestPerson::age);
+        MatcherAssert.assertThat(
+            target.resolve(),
+            Matchers.equalTo(TestSimpleVariable.PERSON_AGE)
+        );
     }
 
+    /**
+     * Variable should be able to resolve to String value.
+     */
     @Test
     public void testStringVariable() {
-        Variable<TestPerson, String> target = new Variable<>(eugene, TestPerson::firstName);
-        Assert.assertEquals("Eugene", target.resolve());
+        final Variable<TestPerson, String> target =
+            new Variable<>(this.eugene, TestPerson::firstName);
+        MatcherAssert.assertThat(
+            target.resolve(),
+            Matchers.equalTo(TestSimpleVariable.PERSON_NAME)
+        );
     }
 }
