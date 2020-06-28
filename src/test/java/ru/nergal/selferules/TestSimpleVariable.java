@@ -43,7 +43,7 @@ public class TestSimpleVariable {
 
     @Test
     public void testStringVariable() {
-        Variable<TestPerson, String> target = new Variable<>(eugene, TestPerson::name);
+        Variable<TestPerson, String> target = new Variable<>(eugene, TestPerson::firstName);
         Assert.assertEquals("Eugene", target.resolve());
     }
 }

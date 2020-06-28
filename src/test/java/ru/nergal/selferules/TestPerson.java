@@ -18,26 +18,47 @@
 package ru.nergal.selferules;
 
 /**
- * @todo #3 10m Add Javadoc to TestPerson (see Qulice report for details)
+ * I am a dummy person capable of providing some information for testing Rule logic.
+ *
+ * @since 0.0.1
  */
-
-public class TestPerson {
+public final class TestPerson {
     /**
-     * @todo #3 20m Fix Checkstyle & PMD warnings in TestPerson
+     * Age of a person.
      */
-    private final int age;
+    private final int years;
+
+    /**
+     * Name of a person.
+     */
     private final String name;
 
-    public TestPerson(int age, String name) {
-        this.age = age;
+    /**
+     * Primary constructor.
+     *
+     * @param years Person's age.
+     * @param name Person's name.
+     */
+    public TestPerson(final int years, final String name) {
+        this.years = years;
         this.name = name;
     }
 
+    /**
+     * Method to know person's age.
+     *
+     * @return Person's age in years.
+     */
     public Integer age() {
-        return age;
+        return this.years;
     }
 
-    public String name() {
-        return name;
+    /**
+     * Method to know person's name.
+     *
+     * @return Person's name.
+     */
+    public String firstName() {
+        return this.name;
     }
 }
