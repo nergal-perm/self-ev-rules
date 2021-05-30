@@ -6,7 +6,11 @@
 
     <groupId>org.example</groupId>
     <artifactId>self-e-rules</artifactId>
+    <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
+    <modules>
+        <module>core</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -49,7 +53,7 @@
                 <artifactId>qulice-maven-plugin</artifactId>
                 <version>0.18.19</version>
                 <configuration>
-                    <license>file:${basedir}/NOTICE</license>
+                    <license>file:${basedir}/../NOTICE</license>
                 </configuration>
                 <executions>
                     <execution>
